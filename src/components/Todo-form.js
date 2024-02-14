@@ -3,21 +3,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { css } from "@emotion/css";
 
-function TodoForm() {
+function TodoForm({ updateTodos, setFilter }) {
   const [inputValue, setInputValue] = React.useState("");
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const CreateNewTodo = () => {
-    if (inputValue.trim() !== "") {
-      const newTodo = document.createElement("li");
-      newTodo.textContent = inputValue;
-      document.getElementById("listItems")?.appendChild(newTodo);
+  const createNewTodo = () => {
+    if (inputValue) {
+      const newTodo = {
+        id: crypto.randomUUID(),
+        message: inputValue,
+        completed: false,
+      };
+
+      localStorage.setItem(`todo-item-${newTodo.id}`, JSON.stringify(newTodo));
+
+      updateTodos();
       setInputValue("");
+    } else {
+      console.log("Please enter a todo message");
     }
   };
+
   return (
     <div>
       <form
@@ -61,7 +70,7 @@ function TodoForm() {
             }
           `}
           type="button"
-          onClick={CreateNewTodo}
+          onClick={createNewTodo}
         >
           <FontAwesomeIcon icon={faSquarePlus} />
         </button>
@@ -80,6 +89,9 @@ function TodoForm() {
                 color: white;
               }
             `}
+            onChange={(e) => {
+              setFilter(e.target.value);
+            }}
           >
             <option value="all">All</option>
             <option value="completed">Completed</option>
@@ -87,18 +99,6 @@ function TodoForm() {
           </select>
         </div>
       </form>
-      <div
-        id="listItems"
-        className={css`
-          display: flex;
-          list-style: none;
-          margin: 1rem;
-          font-size: 1.5rem;
-          justify-content: center;
-          align-items: center;
-          color: white;
-        `}
-      ></div>
     </div>
   );
 }
