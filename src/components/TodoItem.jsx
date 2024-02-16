@@ -13,6 +13,11 @@ export default function TodoItem({ todo, updateTodos }) {
         gap: 2rem;
         padding: 1rem;
         text-decoration: ${todo.completed ? "line-through" : "none"};
+        background: #141428;
+        margin: 1.5rem;
+        border-radius: 10px;
+        color: white;
+        font-family: "Poppins", sans-serif;
       `}
     >
       <div
@@ -20,6 +25,7 @@ export default function TodoItem({ todo, updateTodos }) {
           width: 80%;
           align: left;
           user-select: none;
+          color: #cccccc;
         `}
       >
         {todo.message}
@@ -39,6 +45,7 @@ export default function TodoItem({ todo, updateTodos }) {
           icon={faCheck}
           className={css`
             cursor: pointer;
+            color: yellow;
           `}
         />
       </div>
@@ -52,6 +59,7 @@ export default function TodoItem({ todo, updateTodos }) {
           icon={faTrash}
           className={css`
             cursor: pointer;
+            color: yellow;
           `}
         />
       </div>

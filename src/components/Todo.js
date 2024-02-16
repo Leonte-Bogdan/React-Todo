@@ -10,21 +10,8 @@ function Todo() {
 
   const updateTodos = () => {
     const localStorageTodoItems = getAllLocalStorageTodoItems();
-    let filteredTodos = [];
 
-    if (filter === "all") {
-      filteredTodos = localStorageTodoItems;
-    }
-
-    if (filter === "complete") {
-      filteredTodos = localStorageTodoItems.filter((todo) => todo.completed);
-    }
-
-    if (filter === "incomplete") {
-      filteredTodos = localStorageTodoItems.filter((todo) => !todo.completed);
-    }
-
-    setTodos(filteredTodos);
+    setTodos(localStorageTodoItems);
   };
 
   useEffect(() => {
@@ -39,7 +26,7 @@ function Todo() {
     <div>
       <TodoHeader />
       <TodoForm updateTodos={updateTodos} setFilter={setFilter} />
-      <TodoItemList todos={todos} updateTodos={updateTodos} />
+      <TodoItemList filter={filter} todos={todos} updateTodos={updateTodos} />
     </div>
   );
 }

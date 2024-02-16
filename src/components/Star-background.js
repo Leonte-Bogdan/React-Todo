@@ -29,9 +29,14 @@ const StarBackground = ({ children }) => {
     { id: 3, top: "60%", left: "80%" },
     { id: 4, top: "80%", left: "20%" },
     { id: 5, top: "20%", left: "60%" },
-    { id: 6, top: "30%", left: "70%" },
+    { id: 6, top: "30%", left: "5%" },
     { id: 7, top: "50%", left: "90%" },
     { id: 8, top: "70%", left: "90%" },
+    { id: 9, top: "90%", left: "40%" },
+    { id: 10, top: "90%", left: "70%" },
+    { id: 11, top: "40%", left: "25%" },
+    { id: 12, top: "10%", left: "20%" },
+    { id: 13, top: "5%", left: "15%" },
   ]);
 
   const handleStarClick = (id) => {
